@@ -1,6 +1,6 @@
 {
   "name": "ynov",
-  "app_id": "",
+  "app_id": "b3fb229c",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
