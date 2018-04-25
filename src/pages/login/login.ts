@@ -37,7 +37,12 @@ export class LoginPage {
   // Attempt to login in through our User service
   doLogin() {
     this.user.login(this.account).subscribe((resp) => {
-      this.storage.set('token', resp);
+      if (resp['token']) {
+        this.storage.set('token', resp['token']);
+      }
+      if (resp['user']) {
+        this.storage.set('user', resp['user']);
+      }
       this.navCtrl.push(MainPage);
     }, (err) => {
       this.navCtrl.push(MainPage);

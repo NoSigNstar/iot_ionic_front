@@ -12,7 +12,7 @@ import { Storage } from '@ionic/storage';
   template: `<ion-menu [content]="content">
     <ion-header>
       <ion-toolbar>
-        <ion-title>Pages</ion-title>
+        <ion-title>BONJOUR {{username}}</ion-title>
       </ion-toolbar>
     </ion-header>
 
@@ -29,7 +29,7 @@ import { Storage } from '@ionic/storage';
 })
 export class MyApp {
   rootPage:string
-
+  username:string
   @ViewChild(Nav) nav: Nav;
 
   pages: any[] = [
@@ -47,24 +47,28 @@ export class MyApp {
   ];
 
   constructor(private translate: TranslateService, platform: Platform, settings: Settings, private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen, private storage: Storage) {
-    let self = this
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.storage.get('token').then((val) => {
-        if (val) {
-          self.rootPage = MainPage
-        } else {
-          self.rootPage = LoginPage
-        }
-      });
     });
+    this.checkLogin()
     this.initTranslate();
   }
-  
-
+  checkLogin(){
+    this.storage.get('token').then((val) => {
+      console.log('VAL',val)
+      if (val) {
+        this.rootPage = MainPage
+        this.storage.get('user').then((val) => {
+          this.username = val.username
+        })
+      } else {
+        this.rootPage = LoginPage
+      }
+    });
+  }
   initTranslate() {
     // Set the default language for translation strings, and the current language.
     this.translate.setDefaultLang('en');
