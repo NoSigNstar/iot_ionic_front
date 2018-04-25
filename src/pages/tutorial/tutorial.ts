@@ -53,8 +53,9 @@ export class TutorialPage {
 
   startApp() {
     this.storage.get('token').then((val) => {
+      console.log(val)
       if(val) {
-        this.navCtrl.setRoot('MainPage', {}, {
+        this.navCtrl.setRoot(MainPage, {}, {
           animate: true,
           direction: 'forward'
         });
