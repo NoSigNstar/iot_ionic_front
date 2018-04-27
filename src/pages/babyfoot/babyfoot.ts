@@ -30,11 +30,16 @@ export class BabyfootPage {
         SailsSocket.on('babyfoot', (msg) => {
             let data = msg.data;
 
-            var current = this.allFussballTables.filter(function(table){
-                return table.id == data.id
-            });
-            _.extend(current, data); //use lodash function to change the appropriate attributes of the object
-            ref.detectChanges(); //This function refreshes the view, _.extend changes the object but does not trigger a refresh on it's own
+            if(msg.verb == "updated"){
+                var current = this.allFussballTables.filter(function(table){
+                    return table.id == data.id
+                });
+                _.extend(current, data); //use lodash function to change the appropriate attributes of the object
+                ref.detectChanges(); //This function refreshes the view, _.extend changes the object but does not trigger a refresh on it's own
+
+            }
+
+
         });
     }
 
@@ -54,18 +59,8 @@ export class BabyfootPage {
         );
     }
 
-
-
     tableSelected(babyfoot:Babyfoot){
         this.navCtrl.push("BabyfootDetailPage", {babyfoot:babyfoot})
-    }
-
-    handleMessageReceived() {
-
-    }
-
-    trackByFn(index,item){
-        return index;
     }
 
 }
