@@ -3,6 +3,8 @@ import {Api} from "../api/api";
 import SailsSocket from "sails-socket"
 import { fromPromise } from 'rxjs/observable/fromPromise';
 
+
+
 /*
   Generated class for the BabyfootProvider provider.
 
@@ -16,6 +18,7 @@ export class BabyfootProvider {
     }
 
     getAll() {
+        //return fromPromise(SailsSocket.get('/babyfoot'));
         return fromPromise(SailsSocket.get('/babyfoot'));
     }
 }
