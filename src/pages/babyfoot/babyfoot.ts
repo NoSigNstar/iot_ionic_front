@@ -30,7 +30,7 @@ export class BabyfootPage {
             let data = msg.data;
 
             if(msg.verb == "updated"){
-                var updatedIndex = this.allFussballTables.filter(function(table, index){
+                this.allFussballTables.filter(function(table, index){
                     if(table.id == data.id){
                         _.extend(table, data) //use lodash function to change the appropriate attributes of the object
                     }
