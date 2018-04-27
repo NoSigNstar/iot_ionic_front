@@ -20,7 +20,7 @@ export class BabyfootProvider {
     getAll() {
 
         //Sails socket returns a promise, as we want to detect any changes on the tables we need to turn it into an observable
-        // in order to do that we suse the fromPromise function from Observable.
+        // in order to do that we use the fromPromise function from Observable.
         //We use the socket get instead of a normal http get in order to open the websocket.
         return fromPromise(SailsSocket.get('/babyfoot'));
     }
