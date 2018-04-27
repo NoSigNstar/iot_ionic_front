@@ -42,10 +42,7 @@ export class User {
     //Subscribe to nay changes on the seq variable
     seq.subscribe((res: any) => {
       // If the API returned a successful response, mark the user as logged in
-      if (res.status == 'success') {
-        this._loggedIn(res);
-      } else {
-      }
+      this.setCredentials(res);
     }, err => {
       console.error('ERROR', err);
     });
@@ -58,14 +55,10 @@ export class User {
    * the user entered on the form.
    */
   signup(accountInfo: any) {
-      console.log(accountInfo);
     let seq = this.api.post('api/users/signup', accountInfo).share();
-
     seq.subscribe((res: any) => {
       // If the API returned a successful response, mark the user as logged in
-      if (res.status == 'success') {
-        this._loggedIn(res);
-      }
+      this.setCredentials(res);
     }, err => {
       console.error('ERROR', err);
     });
@@ -78,12 +71,13 @@ export class User {
    */
   logout() {
     this._user = null;
+    this.storage.set('token', null);
   }
 
   /**
    * Process a login/signup response to store user data
    */
-  _loggedIn(resp) {
+  setCredentials(resp) {
     this._user = resp.user;
     this._token = resp.token;
     this.storage.set('user', resp.user);
@@ -91,7 +85,7 @@ export class User {
   }
 
   isLoggedIn(){
-    return this._user
+    return this._token !== null && typeof this._token != 'undefined' ? true : false
   }
 
   get token(): any {

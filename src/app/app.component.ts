@@ -9,6 +9,7 @@ import { Settings } from '../providers/providers';
 import { Storage } from '@ionic/storage';
 
 import SailsSocket from 'sails-socket';
+import { User } from '../providers/providers';
 
 @Component({
     templateUrl: 'menu.html'
@@ -28,7 +29,7 @@ export class MyApp {
     { title: 'User', component: 'UserPage' }
   ];
 
-  constructor(private translate: TranslateService, platform: Platform, settings: Settings, private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen, private storage: Storage) {
+  constructor(private translate: TranslateService, platform: Platform, settings: Settings, private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen, private storage: Storage, public user: User) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -43,13 +44,12 @@ export class MyApp {
 
     //checkPreviousLogin();
   }
+
   checkLogin(){
     this.storage.get('token').then((val) => {
-      console.log('VAL',val);
-      if (val) {
+      if (val !== null) {
         this.rootPage = MainPage;
         this.storage.get('user').then((val) => {
-          console.log(val);
           this.username = val.username
         })
       } else {
@@ -57,6 +57,7 @@ export class MyApp {
       }
     });
   }
+
   initTranslate() {
     // Set the default language for translation strings, and the current language.
     this.translate.setDefaultLang('en');
@@ -90,6 +91,7 @@ export class MyApp {
   }
 
   logout() {
-    //this.user.logout();
+    this.user.logout();
+    this.nav.setRoot(LoginPage);
   }
 }
