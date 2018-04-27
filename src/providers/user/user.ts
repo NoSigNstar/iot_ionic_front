@@ -36,11 +36,11 @@ export class User {
    * the user entered on the form.
    */
   login(accountInfo: any) {
-    console.log(accountInfo);
+    //Send data to server
     let seq = this.api.post('api/users/login', accountInfo).share();
 
+    //Subscribe to nay changes on the seq variable
     seq.subscribe((res: any) => {
-      console.log('RESS', res)
       // If the API returned a successful response, mark the user as logged in
       if (res.status == 'success') {
         this._loggedIn(res);

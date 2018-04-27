@@ -29,21 +29,19 @@ export class BabyfootPage {
         this.allFussballTables = [];
         SailsSocket.on('babyfoot', (msg) => {
             let data = msg.data;
-            console.log('data', data);
-            console.log('before', this.allFussballTables);
 
             var current = this.allFussballTables.filter(function(table){
                 return table.id == data.id
             });
-            let newItem = _.extend(current, data);
-            this.allFussballTables.push(newItem);
-            ref.detectChanges();
-            console.log('after', this.allFussballTables);
+            _.extend(current, data); //use lodash function to change the appropriate attributes of the object
+            ref.detectChanges(); //This function refreshes the view, _.extend changes the object but does not trigger a refresh on it's own
         });
     }
 
 
     ionViewDidLoad() {
+
+        //GetAll function from the provider, this basicly calls a get on the appropriate route using sockets
         this.babyfoot.getAll().subscribe(
             (result:any) => {
                 console.log(result);
