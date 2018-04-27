@@ -27,6 +27,7 @@ export class UserPage {
       this.players.findTenLastUsers().subscribe(
           (result:any) => {
               this.currentPlayers = result
+              console.log(result)
           },
           (error) => {
             console.log(error.message)

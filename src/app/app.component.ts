@@ -8,39 +8,21 @@ import { MainPage, LoginPage } from '../pages/pages';
 import { Settings } from '../providers/providers';
 import { Storage } from '@ionic/storage';
 
+import SailsSocket from 'sails-socket';
+
 @Component({
-  template: `<ion-menu [content]="content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>BONJOUR {{username}}</ion-title>
-      </ion-toolbar>
-    </ion-header>
-
-    <ion-content>
-      <ion-list>
-        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-          {{p.title}}
-        </button>
-      </ion-list>
-    </ion-content>
-
-  </ion-menu>
-  <ion-nav #content [root]="rootPage"></ion-nav>`
+    templateUrl: 'menu.html'
 })
 export class MyApp {
-  rootPage:string
-  username:string
+  rootPage:string;
+  username:string;
   @ViewChild(Nav) nav: Nav;
 
   pages: any[] = [
-    { title: 'Welcome', component: 'WelcomePage' },
-    { title: 'Tabs', component: 'TabsPage' },
-    { title: 'Cards', component: 'CardsPage' },
-    { title: 'Content', component: 'ContentPage' },
     { title: 'Login', component: 'LoginPage' },
     { title: 'Signup', component: 'SignupPage' },
-    { title: 'Master Detail', component: 'ListMasterPage' },
     { title: 'Menu', component: 'MenuPage' },
+    { title: 'Babyfoot', component: 'BabyfootPage' },
     { title: 'Settings', component: 'SettingsPage' },
     { title: 'Search', component: 'SearchPage' },
     { title: 'User', component: 'UserPage' }
@@ -53,15 +35,21 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
-    this.checkLogin()
+
+      const initialParams = {url: 'http://localhost:1337'};
+      SailsSocket.connect(initialParams);
+    this.checkLogin();
     this.initTranslate();
+
+    //checkPreviousLogin();
   }
   checkLogin(){
     this.storage.get('token').then((val) => {
-      console.log('VAL',val)
+      console.log('VAL',val);
       if (val) {
-        this.rootPage = MainPage
+        this.rootPage = MainPage;
         this.storage.get('user').then((val) => {
+          console.log(val);
           this.username = val.username
         })
       } else {
@@ -99,5 +87,9 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+
+  logout() {
+    //this.user.logout();
   }
 }

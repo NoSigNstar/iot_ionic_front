@@ -27,6 +27,7 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class User {
   _user: any;
+  private _token:any;
 
   constructor(public api: Api, private storage: Storage) { }
 
@@ -84,5 +85,16 @@ export class User {
    */
   _loggedIn(resp) {
     this._user = resp.user;
+    this._token = resp.token;
+    this.storage.set('user', resp.user);
+    this.storage.set('token', resp.token);
+  }
+
+  isLoggedIn(){
+    return this._user
+  }
+
+  get token(): any {
+      return this._token;
   }
 }
