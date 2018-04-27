@@ -4,7 +4,6 @@ import {Babyfoot} from "../../models/babyfoot";
 import {BabyfootProvider} from "../../providers/babyfoot/babyfoot";
 import SailsSocket from "sails-socket";
 import _ from "lodash";
-import {Observable} from "rxjs/Observable";
 import { ChangeDetectorRef } from '@angular/core'
 
 /**
@@ -31,12 +30,12 @@ export class BabyfootPage {
             let data = msg.data;
 
             if(msg.verb == "updated"){
-                var current = this.allFussballTables.filter(function(table){
-                    return table.id == data.id
+                var updatedIndex = this.allFussballTables.filter(function(table, index){
+                    if(table.id == data.id){
+                        _.extend(table, data) //use lodash function to change the appropriate attributes of the object
+                    }
                 });
-                _.extend(current, data); //use lodash function to change the appropriate attributes of the object
-                ref.detectChanges(); //This function refreshes the view, _.extend changes the object but does not trigger a refresh on it's own
-
+                this.ref.detectChanges(); //This function refreshes the view, _.extend changes the object but does not trigger a refresh on it's own
             }
 
 
@@ -46,7 +45,7 @@ export class BabyfootPage {
 
     ionViewDidLoad() {
 
-        //GetAll function from the provider, this basicly calls a get on the appropriate route using sockets
+        //GetAll function from the provider, this basically calls a get on the appropriate route using sockets
         this.babyfoot.getAll().subscribe(
             (result:any) => {
                 console.log(result);
