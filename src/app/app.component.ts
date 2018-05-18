@@ -4,7 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { Config, Nav, Platform } from 'ionic-angular';
 
-import { MainPage, LoginPage } from '../pages/pages';
+import { MainPage, LoginPage, UserPage } from '../pages/pages';
 import { Settings } from '../providers/providers';
 import { Storage } from '@ionic/storage';
 
@@ -17,15 +17,14 @@ import { User } from '../providers/providers';
 export class MyApp {
   rootPage:string;
   username:string;
+  team:string;
+
   @ViewChild(Nav) nav: Nav;
 
   pages: any[] = [
     { title: 'Login', component: 'LoginPage' },
     { title: 'Signup', component: 'SignupPage' },
-    { title: 'Menu', component: 'MenuPage' },
     { title: 'Babyfoot', component: 'BabyfootPage' },
-    { title: 'Settings', component: 'SettingsPage' },
-    { title: 'Search', component: 'SearchPage' },
     { title: 'User', component: 'UserPage' }
   ];
 
@@ -48,9 +47,10 @@ export class MyApp {
   checkLogin(){
     this.storage.get('token').then((val) => {
       if (val !== null) {
-        this.rootPage = MainPage;
+        this.rootPage = UserPage;
         this.storage.get('user').then((val) => {
           this.username = val.username
+          this.team = val.idTeam
         })
       } else {
         this.rootPage = LoginPage

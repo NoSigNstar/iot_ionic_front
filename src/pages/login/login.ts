@@ -5,6 +5,7 @@ import {Storage} from '@ionic/storage';
 
 import {User} from '../../providers/providers';
 import {MainPage} from '../pages';
+import { UserPage } from '../user/user';
 
 @IonicPage()
 @Component({
@@ -37,9 +38,9 @@ export class LoginPage {
   // Attempt to login in through our User service
   doLogin() {
     this.user.login(this.account).subscribe((resp) => {
-      this.navCtrl.push(MainPage);
+      this.navCtrl.push(UserPage);
     }, (err) => {
-      this.navCtrl.push(MainPage);
+      this.navCtrl.push(UserPage);
       // Unable to log in
       let toast = this.toastCtrl.create({
         message: this.loginErrorString,

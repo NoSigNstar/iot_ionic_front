@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {PlayersProvider} from "../../providers/players/players";
-import {Player} from "../../models/player";
+import { PlayersProvider } from "../../providers/players/players";
+import { Player } from "../../models/player";
 
 /**
  * Generated class for the UserPage page.
@@ -12,31 +12,31 @@ import {Player} from "../../models/player";
 
 @IonicPage()
 @Component({
-  selector: 'page-user',
-  templateUrl: 'user.html',
+    selector: 'page-user',
+    templateUrl: 'user.html',
 })
 export class UserPage {
-  items:any;
-  currentPlayers: Player[];
+    items: any;
+    currentPlayers: Player[];
 
-  constructor(public navCtrl: NavController,public players: PlayersProvider, public navParams: NavParams) {
-      this.currentPlayers = []
-  }
+    constructor(public navCtrl: NavController, public players: PlayersProvider, public navParams: NavParams) {
+        this.currentPlayers = []
+    }
 
-  ionViewDidLoad() {
-      this.players.findTenLastUsers().subscribe(
-          (result:any) => {
-              this.currentPlayers = result
-              console.log(result)
-          },
-          (error) => {
-            console.log(error.message)
-          }
-      )
-  }
+    ionViewDidLoad() {
+        this.players.findTenLastUsers().subscribe(
+            (result: any) => {
+                this.currentPlayers = result
+                console.log(result)
+            },
+            (error) => {
+                console.log(error.message)
+            }
+        )
+    }
 
-  playerSelected(player:Player){
-        this.navCtrl.push("PlayerDetailPage", {player:player})
-  }
+    playerSelected(player: Player) {
+        this.navCtrl.push("PlayerDetailPage", { player: player })
+    }
 
 }

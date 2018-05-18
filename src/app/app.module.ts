@@ -17,6 +17,7 @@ import {MyApp} from './app.component';
 import {PlayersProvider} from '../providers/players/players';
 import {BabyfootProvider} from '../providers/babyfoot/babyfoot';
 import {AuthInterceptor} from "../interceptor/auth";
+import { TeamProvider } from '../providers/team/team';
 
 
 // The translate loader needs to know where to load i18n files
@@ -73,7 +74,8 @@ export function provideSettings(storage: Storage) {
         // Keep this to enable Ionic's runtime error handling during development
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         PlayersProvider,
-        BabyfootProvider
+        BabyfootProvider,
+    TeamProvider
     ]
 })
 export class AppModule {

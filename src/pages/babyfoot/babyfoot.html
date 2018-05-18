@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>user</ion-title>
+    <ion-title>List Babyfoot</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,15 +16,20 @@
 
   <ion-list>
     <ion-card *ngFor="let item of allFussballTables" (click)="tableSelected(item)">
+      <ion-grid>
+        <ion-row>
+          <ion-card-header col-6>
+            {{item.location}}
+          </ion-card-header>
 
-      <ion-card-header>
-        {{item.location}}
-      </ion-card-header>
-
-      <ion-card-content>
-        {{item.available}}
-      </ion-card-content>
-
+          <ion-card-content col-6 *ngIf="item.available">
+            <button col-12 ion-button color="secondary">Disponible</button>
+          </ion-card-content>
+          <ion-card-content col-6 *ngIf="!item.available">
+            <button col-12 ion-button color="danger">Indisponible</button>
+          </ion-card-content>
+        </ion-row>
+      </ion-grid>
     </ion-card>
   </ion-list>
 </ion-content>

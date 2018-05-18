@@ -14,8 +14,10 @@ export class SignupPage {
   // The account fields for the login form.
   // If you're using the username field with or without email, make
   // sure to add it to the type
-  account: { username: string, email: string, password: string } = {
+  account: { username: string, firstName: string, lastName: string, email: string, password: string } = {
     username: 'Test Human',
+    firstName: 'My FirstName',
+    lastName: 'LastName',
     email: 'test@example.com',
     password: 'test'
   };
@@ -36,6 +38,7 @@ export class SignupPage {
   doSignup() {
     // Attempt to login in through our User service
     this.user.signup(this.account).subscribe((resp) => {
+      console.log(this.account);
       this.navCtrl.push(MainPage);
     }, (err) => {
 

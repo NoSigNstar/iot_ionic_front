@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>user</ion-title>
+    <ion-title>List Users</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,16 +15,16 @@
 <ion-content>
 
   <ion-list>
-      <ion-card *ngFor="let item of currentPlayers" (click)="playerSelected(item)">
+    <ion-card *ngFor="let item of currentPlayers" (click)="playerSelected(item)">
 
-          <ion-card-header>
-              {{item.name}}
-          </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-icon name="person" item-start></ion-icon>
+          {{item.firstName}} {{item.lastName}}
+          <ion-badge item-end>{{item.username}}</ion-badge>
+        </ion-item>
+      </ion-card-content>
 
-          <ion-card-content>
-              {{item.username}}
-          </ion-card-content>
-
-      </ion-card>
+    </ion-card>
   </ion-list>
 </ion-content>

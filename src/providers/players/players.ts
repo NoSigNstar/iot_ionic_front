@@ -7,6 +7,6 @@ export class PlayersProvider {
     constructor(public api: Api) { }
 
     findTenLastUsers() {
-        return this.api.get('user')
+        return this.api.get('user');
     }
 }
