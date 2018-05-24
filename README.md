@@ -9,6 +9,7 @@ Francois Poisblaud & Camile Chabert
       - Dossier iot_ionic_back/config/datastores.js
       - Edit "url: 'mysql://root:123456@127.0.0.1:3306/ybaby'"
 
+
 # ************************************************************
 # Sequel Pro SQL dump
 # Version 4541
@@ -17,7 +18,7 @@ Francois Poisblaud & Camile Chabert
 # https://github.com/sequelpro/sequelpro
 #
 # H�te: 127.0.0.1 (MySQL 5.7.20)
-# Base de donn�es: ybaby-old
+# Base de donn�es: ybaby
 # Temps de g�n�ration: 2018-05-24 13:27:57 +0000
 # ************************************************************
 
