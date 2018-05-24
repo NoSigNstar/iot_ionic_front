@@ -4,7 +4,10 @@ Ybaby 🎮
 
 Francois Poisblaud & Camile Chabert
 
-# sql 
+->  Creer la Base de donnée "ybaby"
+->  Changer la connection à la Base de donnée    
+      - Dossier iot_ionic_back/config/datastores.js
+      - Edit "url: 'mysql://root:123456@127.0.0.1:3306/ybaby'"
 
 # ************************************************************
 # Sequel Pro SQL dump
@@ -14,8 +17,8 @@ Francois Poisblaud & Camile Chabert
 # https://github.com/sequelpro/sequelpro
 #
 # H�te: 127.0.0.1 (MySQL 5.7.20)
-# Base de donn�es: ybaby
-# Temps de g�n�ration: 2018-05-18 15:17:52 +0000
+# Base de donn�es: ybaby-old
+# Temps de g�n�ration: 2018-05-24 13:27:57 +0000
 # ************************************************************
 
 
@@ -59,7 +62,7 @@ CREATE TABLE `babyfoot` (
   `available` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 LOCK TABLES `babyfoot` WRITE;
 /*!40000 ALTER TABLE `babyfoot` DISABLE KEYS */;
@@ -216,7 +219,7 @@ CREATE TABLE `team` (
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 LOCK TABLES `team` WRITE;
 /*!40000 ALTER TABLE `team` DISABLE KEYS */;
@@ -252,18 +255,18 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 
 INSERT INTO `user` (`createdAt`, `updatedAt`, `id`, `email`, `firstName`, `lastName`, `username`, `dateOfBirth`, `sex`, `password`, `team`)
 VALUES
-	(1525265787986,1525265787986,1,'test@example.com','Paul','Dupont','human',0,'','YWVzLTI1Ni1nY20kJGRlZmF1bHQ=$QGaPuurG993eOuvb$9Gqc4sHf$JwlIvZy7cGGq2VSgMWxymQ',1),
-	(1525423070449,1525423070449,2,'test1@example.com','Nicolas','Martin','Yuka',0,'','YWVzLTI1Ni1nY20kJGRlZmF1bHQ=$1LDfKeCp3YVYK23w$hd0B2H1z$r1+AKBhS5lVGqLby9GFobQ',1),
-	(1525423093965,1525423093965,3,'test6@example.com','Robert','Michon','Iopa',0,'','YWVzLTI1Ni1nY20kJGRlZmF1bHQ=$6ef1RxSYQMVKJ7E4$u8CRNAdH$d+f2Pz+GxPFE/eBTeAq1ag',1),
-	(1526639281074,1526639281074,4,'god@gmail.com','Julien','giton','Fifou',0,'','YWVzLTI1Ni1nY20kJGRlZmF1bHQ=$j/UIy0ns9j0uDq82$pCa0Jrb8$a7JiSsCyy4NChkROQG84Ww',2),
-	(1526646911100,1526646911100,5,'admin@ljjn.fr','My FirstName','LastName','Test Human',0,'','YWVzLTI1Ni1nY20kJGRlZmF1bHQ=$A4d06fLlaSN1d/N7$E7KoxPZXQRj2Nw==$ZsXk4D2VxBfKPRJppZTenw',2);
+	(1525265787986,1525265787986,1,'tgghyh@example.com','Paul','Dupont','human',0,'','YWVzLTI1Ni1nY20kJGRlZmF1bHQ=$0XLkqJa1ySm8hsNP$aEJAH3hv$p9B/BOi5OXS7oiuRUZGkSQ',1),
+	(1525423070449,1525423070449,2,'test1@example.com','Nicolas','Martin','Yuka',0,'','YWVzLTI1Ni1nY20kJGRlZmF1bHQ=$KCdptdwJdD3JjnzA$dW/3w0gl$+pFo2M3bdaxulrdZ1JO4EQ',1),
+	(1525423093965,1525423093965,3,'test6@example.com','Robert','Michon','Iopa',0,'','YWVzLTI1Ni1nY20kJGRlZmF1bHQ=$C0N0d7m0sqgSV2y3$46bpw0Y1$soor+GEtpEv1DRhJYtk4nA',1),
+	(1526639281074,1526639281074,4,'god@gmail.com','Julien','giton','Fifou',0,'','YWVzLTI1Ni1nY20kJGRlZmF1bHQ=$ifTrUk7VSxxrAHyq$GW3X6N6f$uR2hPmrBxvuaSh7DHADjmg',2),
+	(1527165375484,1527165375484,7,'test@example.com','My FirstName','LastName','Test Human',0,'','YWVzLTI1Ni1nY20kJGRlZmF1bHQ=$jk7anuE1x35m4Xkz$Ussbp/AD$MrrW/HayLHv+0dkvYGCFbg',2);
 
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -291,5 +294,3 @@ CREATE TABLE `usermatch` (
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
